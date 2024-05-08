@@ -176,7 +176,7 @@ export default function SocialCard({
             bg: "blue.500",
           }}
         >
-          Connect
+          Add
         </Button>
       </Stack>
     </Box>

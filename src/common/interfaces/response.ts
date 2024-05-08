@@ -10,8 +10,11 @@ export interface SuccessResponse<T> {
 }
 
 export interface PaginatedResponse<T> {
-  count: number;
-  next?: string;
-  previous?: string;
-  results: T[]
+  page: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+  data: T[];
 }
