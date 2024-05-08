@@ -1,14 +1,15 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import DefaultLayout from "@/components/layouts/default";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
-import { wrapper } from "../store/store";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import { AuthProvider } from "@/components/@core/AuthProvider";
+import theme from "@/lib/theme";
+import DefaultLayout from "@/components/layouts/default";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -43,10 +44,12 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   }, [router]);
 
   return (
-    <ChakraProvider>
-      <DefaultLayout>{getLayout(<Component {...pageProps} />)}</DefaultLayout>
-    </ChakraProvider>
+    <AuthProvider>
+      <ChakraProvider theme={theme}>
+        <DefaultLayout>{getLayout(<Component {...pageProps} />)}</DefaultLayout>
+      </ChakraProvider>
+    </AuthProvider>
   );
 }
 
-export default wrapper.withRedux(App);
+export default App;

@@ -8,7 +8,7 @@ export default function LandingPage() {
   return (
     <>
       <Head>
-        <title>TechiesConnect - Find any techie in your area</title>
+        <title>TechiePool - Find any techie around you</title>
       </Head>
 
       <HeroComponent />
